@@ -1,4 +1,3 @@
-// src/lib/users.ts
 type RawUser = {
     login: {
       username: string;
@@ -22,7 +21,6 @@ type RawUser = {
     if (usersCache) return usersCache;
   
     const res = await fetch('https://randomuser.me/api/?results=9', {
-      // não cache no build; sempre fresh (mas a variável em memória ficará)
       cache: 'no-store',
     });
     const data = await res.json();

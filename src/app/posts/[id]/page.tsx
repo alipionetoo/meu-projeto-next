@@ -1,4 +1,3 @@
-// src/app/posts/[id]/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -26,7 +25,7 @@ export default function PostSelectorPage() {
   const [loadingPost, setLoadingPost] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Carrega lista de posts
+  // carrega lista de posts
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
       .then(res => res.json())
@@ -41,7 +40,7 @@ export default function PostSelectorPage() {
       });
   }, []);
 
-  // Quando muda o id na rota, busca o detalhe
+  // quando muda o id na rota, busca o detalhe
   useEffect(() => {
     const id = idParam ? Number(idParam) : null;
     if (!id) {

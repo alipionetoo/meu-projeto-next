@@ -1,4 +1,3 @@
-// src/app/api/login/route.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getRandomUsers } from '../../../lib/users';
