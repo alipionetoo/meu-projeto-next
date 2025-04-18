@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# meu-projeto-next
 
-## Getting Started
+Este é o repositório da aplicação **Teste Prático Next.js**, desenvolvida por **Alipio Neto da Silva**. O objetivo deste projeto é demonstrar o uso de **Next.js** (App Router), **TypeScript**, **Tailwind CSS**, **Middleware**, **API Routes**, **autenticação simples**, **roteamento estático e dinâmico** e boas práticas de performance.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📦 Tecnologias
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js** (v15 App Router)
+- **TypeScript**
+- **Tailwind CSS** para estilização utilitária
+- **Middleware** para logging e proteção de rota
+- **API Routes** para login/logout e gerenciamento de cookies
+- **Fetch** com cache, SSR e Client Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Estrutura de Rotas
 
-## Learn More
+| Rota            | Descrição                                                                                                  |
+|-----------------|------------------------------------------------------------------------------------------------------------|
+| `/`             | Página inicial estática com links de navegação                                                             |
+| `/users`        | Client Component que consome a API [RandomUser](https://randomuser.me) e exibe usuários com botão de copiar |
+| `/posts/[id]`   | Rota dinâmica que carrega posts do JSONPlaceholder e atualiza a URL ao selecionar                            |
+| `/login`        | Formulário de login (Client Component) que valida credenciais armazenadas no LocalStorage                    |
+| `/protected`    | Página protegida via **Middleware**, carrega artigo aleatório da Wikipédia e valida cookie de sessão       |
+| `/api/login`    | API Route que valida login e seta cookie `token=MEU_TOKEN_SECRETO`                                          |
+| `/api/logout`   | API Route que limpa o cookie e redireciona para `/`                                                        |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Como executar localmente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Pré-requisitos
 
-## Deploy on Vercel
+- Node.js (>=18)
+- npm ou yarn
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Passos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/alipionetoo/meu-projeto-next.git
+   cd meu-projeto-next
+   ```
+
+2. **Instale as dependências**
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
+
+3. **Variáveis de ambiente**
+
+   - Nenhuma configuração adicional necessária. Usuários e tokens são definidos em memória.
+
+4. **Executar em modo de desenvolvimento**
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+   ```
+   Acesse: [http://localhost:3000](http://localhost:3000)
+
+5. **Build e start para produção**
+   ```bash
+   npm run build
+   npm run start
+   # ou
+   yarn build && yarn start
+   ```
+
+---
+
+## ⚙️ Funcionamento Interno
+
+### Autenticação
+
+- `/users` busca usuários fictícios e armazena em LocalStorage
+- `/login` valida credenciais do LocalStorage e seta cookie `token`
+- **Middleware** (`middleware.ts`) registra requisições e protege `/protected`
+
+### Middleware
+
+- Loga `method` e `pathname` de cada requisição
+- Redireciona usuários não autenticados de `/protected` para `/login`
+
+### Consumo de APIs
+
+- **RandomUser API**: exibe perfis e credenciais no client
+- **JSONPlaceholder**: rota dinâmica de posts com URL controlada via dropdown
+- **Wikimedia REST API**: resumo de artigo aleatório em português na área protegida
+
+### Estilização e UX
+
+- **Tailwind CSS** com configurações em `globals.css`
+- Layout consistente: cartões, botões com hover, transições suaves
+- Componentes separados em Server e Client conforme necessidade
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+
+> Desenvolvido por **Alipio Neto da Silva**
+
